@@ -1,0 +1,6 @@
+name: ${name}
+main: ${group}.PlaceholderMain
+version: ${version}
+description: ${description}
+api-version: 1.19
+softdepend: [ Vault, LuckPerms ]
