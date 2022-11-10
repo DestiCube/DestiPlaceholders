@@ -7,7 +7,6 @@ plugins {
 group = "com.desticube.placeholders"
 version = "1.0-SNAPSHOT"
 description = "DestiCube's main placeholder plugin"
-java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
