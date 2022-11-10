@@ -30,20 +30,6 @@ publishing {
 }
 
 tasks {
-    shadowJar {
-//        minimize()
-        archiveFileName.set("${rootProject.name}-[v${rootProject.version}].jar")
-
-//        listOf("com.gamerduck.commons").forEach {
-//            relocate(it, "${rootProject.group}.commons")
-//        }
-    }
-
-    compileJava {
-        options.release.set(17)
-//        options.encoding = "UTF-8"
-    }
-
     processResources {
         filesMatching("plugin.yml") {
             expand(
