@@ -1,6 +1,6 @@
 plugins {
-    id("java")
-    id("maven-publish")
+    java
+    `maven-publish`
 }
 
 group = "com.desticube.placeholders"
@@ -10,8 +10,13 @@ java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenLocal()
-    maven("https://jitpack.io")
-    maven("https://repo.papermc.io/repository/maven-public/")
+    maven {
+        url = uri("https://repo.papermc.io/repository/maven-public/")
+    }
+
+    maven {
+        url = uri("https://jitpack.io")
+    }
 }
 
 dependencies {
