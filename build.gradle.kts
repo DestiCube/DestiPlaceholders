@@ -1,6 +1,5 @@
 plugins {
     id("java")
-    id("com.github.johnrengelman.shadow") version "7.1.0"
     id("maven-publish")
 }
 
@@ -10,7 +9,7 @@ description = "DestiCube's main placeholder plugin"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
-    mavenCentral()
+    mavenLocal()
     maven("https://jitpack.io")
     maven("https://repo.papermc.io/repository/maven-public/")
 }
@@ -22,9 +21,7 @@ dependencies {
 }
 
 publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
-        }
+    publications.create<MavenPublication>("maven") {
+        from(components["java"])
     }
 }
