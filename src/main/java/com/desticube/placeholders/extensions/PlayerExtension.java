@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static java.lang.String.valueOf;
 import static net.kyori.adventure.text.serializer.gson.GsonComponentSerializer.gson;
@@ -26,8 +27,10 @@ public class PlayerExtension extends PlaceholderExtension {
     }
 
     @Override
-    public @NotNull CompletableFuture<String> onRequestRelational(Player p, String params) {
+    public @NotNull CompletableFuture<String> onRequestRelational(Player player, String params) {
+        AtomicReference<Player> play = new AtomicReference<>(player);
         return CompletableFuture.supplyAsync(() -> {
+            Player p = play.get();
             if (params.equalsIgnoreCase("name")) return p.getName();
             else if (params.equalsIgnoreCase("exp_level")) return valueOf(p.getExpToLevel());
             else if (params.equalsIgnoreCase("exp_amount")) return valueOf(p.getTotalExperience());

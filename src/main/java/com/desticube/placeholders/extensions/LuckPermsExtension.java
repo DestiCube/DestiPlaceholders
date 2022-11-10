@@ -20,6 +20,10 @@ public class LuckPermsExtension extends PlaceholderExtension {
 
     private LuckPerms perms = null;
 
+    public LuckPermsExtension() {
+        perms = LuckPermsProvider.get();
+    }
+
     @Override
     public @NotNull String getAuthor() {
         return "GamerDuck123";
@@ -33,12 +37,6 @@ public class LuckPermsExtension extends PlaceholderExtension {
     @Override
     public @NotNull String getVersion() {
         return "1.0";
-    }
-
-    @Override
-    public void register() {
-        super.register();
-        perms = LuckPermsProvider.get();
     }
 
     @Override

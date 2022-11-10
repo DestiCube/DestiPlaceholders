@@ -1,6 +1,7 @@
 plugins {
-    java
-    `maven-publish`
+    id("java")
+    id("maven-publish")
+    id("com.github.johnrengelman.shadow") version "7.1.0"
 }
 
 group = "com.desticube.placeholders"
@@ -28,5 +29,21 @@ dependencies {
 publishing {
     publications.create<MavenPublication>("maven") {
         from(components["java"])
+    }
+}
+
+tasks {
+    shadowJar {
+//        minimize()
+        archiveFileName.set("${rootProject.name}-[v${rootProject.version}].jar")
+
+        listOf("com.gamerduck.commons").forEach {
+            relocate(it, "${rootProject.group}.commons")
+        }
+    }
+
+    compileJava {
+        options.release.set(17)
+//        options.encoding = "UTF-8"
     }
 }

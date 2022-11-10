@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-import static com.desticube.placeholders.api.Placeholders.addExtension;
 import static java.util.concurrent.CompletableFuture.completedFuture;
 
 public abstract class PlaceholderExtension {
@@ -26,10 +25,6 @@ public abstract class PlaceholderExtension {
 
     public CompletableFuture<String> onRequest(String params) {
         return completedFuture(params);
-    }
-
-    public void register() {
-        addExtension(this);
     }
 
 }

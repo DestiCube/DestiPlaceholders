@@ -21,6 +21,16 @@ public class VaultExtension extends PlaceholderExtension {
     private Chat chat = null;
     private Permission perms = null;
 
+    public VaultExtension() {
+        RegisteredServiceProvider<Economy> econRSP = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
+        RegisteredServiceProvider<Chat> chatRSP = Bukkit.getServer().getServicesManager().getRegistration(Chat.class);
+        RegisteredServiceProvider<Permission> permsRSP = Bukkit.getServer().getServicesManager().getRegistration(Permission.class);
+        if (econRSP == null || chatRSP == null || permsRSP == null) {return;}
+        econ = econRSP.getProvider();
+        chat = chatRSP.getProvider();
+        perms = permsRSP.getProvider();
+    }
+
     @Override
     public @NotNull String getAuthor() {
         return "GamerDuck123";
@@ -34,18 +44,6 @@ public class VaultExtension extends PlaceholderExtension {
     @Override
     public @NotNull String getVersion() {
         return "1.0";
-    }
-
-    @Override
-    public void register() {
-        super.register();
-        RegisteredServiceProvider<Economy> econRSP = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
-        RegisteredServiceProvider<Chat> chatRSP = Bukkit.getServer().getServicesManager().getRegistration(Chat.class);
-        RegisteredServiceProvider<Permission> permsRSP = Bukkit.getServer().getServicesManager().getRegistration(Permission.class);
-        if (econRSP == null || chatRSP == null || permsRSP == null) {return;}
-        econ = econRSP.getProvider();
-        chat = chatRSP.getProvider();
-        perms = permsRSP.getProvider();
     }
 
     @Override

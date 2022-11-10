@@ -13,7 +13,7 @@ import static net.kyori.adventure.text.serializer.gson.GsonComponentSerializer.g
 public class Placeholders {
     public static final ConcurrentHashMap<String, PlaceholderExtension> extensions = new ConcurrentHashMap<>();
 
-    protected static void addExtension(PlaceholderExtension extension) {
+    public static void register(PlaceholderExtension extension) {
         extensions.put(extension.getIdentifier(), extension);
     }
 
