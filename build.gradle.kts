@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("com.github.johnrengelman.shadow") version "7.1.0"
+    id("maven-publish")
 }
 
 group = "com.desticube.placeholders"
@@ -18,20 +19,24 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly("net.luckperms:api:5.4")
-
-    implementation("com.github.GamerDuck123:DuckCommons:706d780630")
-
 }
 
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+        }
+    }
+}
 
 tasks {
     shadowJar {
 //        minimize()
         archiveFileName.set("${rootProject.name}-[v${rootProject.version}].jar")
 
-        listOf("com.gamerduck.commons").forEach {
-            relocate(it, "${rootProject.group}.commons")
-        }
+//        listOf("com.gamerduck.commons").forEach {
+//            relocate(it, "${rootProject.group}.commons")
+//        }
     }
 
     compileJava {
