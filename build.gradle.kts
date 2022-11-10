@@ -7,6 +7,7 @@ plugins {
 group = "com.desticube.placeholders"
 version = "1.0-SNAPSHOT"
 description = "DestiCube's main placeholder plugin"
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
@@ -24,19 +25,6 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])
-        }
-    }
-}
-
-tasks {
-    processResources {
-        filesMatching("plugin.yml") {
-            expand(
-                "name" to rootProject.name,
-                "group" to rootProject.group,
-                "version" to rootProject.version,
-                "description" to rootProject.description
-            )
         }
     }
 }

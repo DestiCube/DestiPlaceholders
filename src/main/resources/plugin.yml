@@ -1,5 +1,5 @@
-name: ${name}
-main: ${group}.PlaceholderMain
+name: DestiPlaceholders
+main: com.desticube.placeholders.PlaceholderMain
 version: ${version}
 description: ${description}
 api-version: 1.19
