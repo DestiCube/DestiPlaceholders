@@ -38,7 +38,7 @@ public class VaultExtension extends PlaceholderExtension {
 
     @Override
     public @NotNull String getIdentifier() {
-        return "player";
+        return "vault";
     }
 
     @Override
@@ -51,7 +51,7 @@ public class VaultExtension extends PlaceholderExtension {
         return CompletableFuture.supplyAsync(() -> {
             if (params.equalsIgnoreCase("primary_group")) return perms.getPrimaryGroup(p);
             else if (params.equalsIgnoreCase("balance")) return valueOf(econ.getBalance(p));
-            return params;
+            else return params;
         });
     }
 }

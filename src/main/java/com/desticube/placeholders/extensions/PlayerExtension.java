@@ -1,6 +1,7 @@
 package com.desticube.placeholders.extensions;
 
 import com.desticube.placeholders.api.PlaceholderExtension;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,6 +29,7 @@ public class PlayerExtension extends PlaceholderExtension {
 
     @Override
     public @NotNull CompletableFuture<String> onRequestRelational(Player player, String params) {
+        Bukkit.getLogger().info("Checking player");
         AtomicReference<Player> play = new AtomicReference<>(player);
         return CompletableFuture.supplyAsync(() -> {
             Player p = play.get();
@@ -39,7 +41,7 @@ public class PlayerExtension extends PlaceholderExtension {
             else if (params.equalsIgnoreCase("is_whitelisted")) return valueOf(p.isWhitelisted());
             else if (params.equalsIgnoreCase("ping")) return valueOf(p.getPing());
             else if (params.equalsIgnoreCase("world")) return p.getWorld().getName();
-            return params;
+            else return null;
         });
     }
 }
