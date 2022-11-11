@@ -24,6 +24,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly("net.luckperms:api:5.4")
+    compileOnly("com.github.angeschossen:LandsAPI:6.22.0")
 }
 
 publishing {

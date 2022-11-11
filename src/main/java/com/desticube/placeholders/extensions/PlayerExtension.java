@@ -28,11 +28,8 @@ public class PlayerExtension extends PlaceholderExtension {
     }
 
     @Override
-    public @NotNull CompletableFuture<String> onRequestRelational(Player player, String params) {
-        Bukkit.getLogger().info("Checking player");
-        AtomicReference<Player> play = new AtomicReference<>(player);
+    public @NotNull CompletableFuture<String> onRequestRelational(Player p, String params) {
         return CompletableFuture.supplyAsync(() -> {
-            Player p = play.get();
             if (params.equalsIgnoreCase("name")) return p.getName();
             else if (params.equalsIgnoreCase("exp_level")) return valueOf(p.getExpToLevel());
             else if (params.equalsIgnoreCase("exp_amount")) return valueOf(p.getTotalExperience());

@@ -3,4 +3,4 @@ main: com.desticube.placeholders.PlaceholderMain
 version: ${version}
 description: ${description}
 api-version: 1.19
-softdepend: [ Vault, LuckPerms ]
+softdepend: [ Vault, LuckPerms, Lands ]

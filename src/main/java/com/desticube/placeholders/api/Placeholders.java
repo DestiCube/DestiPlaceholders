@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static net.kyori.adventure.text.minimessage.MiniMessage.miniMessage;
 import static net.kyori.adventure.text.serializer.gson.GsonComponentSerializer.gson;
 
 public class Placeholders {
@@ -24,7 +25,8 @@ public class Placeholders {
                    b.match(PATTERN).replacement((matcher, builder) -> {
                        String matched = matcher.group(1);
                        String[] split = matched.split("_");
-                       return gson().deserialize(extensions.getOrDefault(split[0], emptyExtension).onRequest(matched.replaceFirst(split[0] + "_", "")).join());
+                       String toDeserialize = extensions.getOrDefault(split[0], emptyExtension).onRequest(matched.replaceFirst(split[0] + "_", "")).join();
+                       return miniMessage().deserialize(toDeserialize == null ? "" : toDeserialize);
                    });
                 });
     }
@@ -34,7 +36,8 @@ public class Placeholders {
                     b.match(PATTERN).replacement((matcher, builder) -> {
                         String matched = matcher.group(1);
                         String[] split = matched.split("_");
-                        return gson().deserialize(extensions.getOrDefault(split[0], emptyExtension).onRequestRelational(p, matched.replaceFirst(split[0] + "_", "")).join());
+                        String toDeserialize = extensions.getOrDefault(split[0], emptyExtension).onRequestRelational(p, matched.replaceFirst(split[0] + "_", "")).join();
+                        return miniMessage().deserialize(toDeserialize == null ? "" : toDeserialize);
                     })
                 );
     }
