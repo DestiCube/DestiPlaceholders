@@ -54,8 +54,9 @@ public class VaultExtension extends PlaceholderExtension {
     }
 
     @Override
-    public @NotNull CompletableFuture<String> onRequestRelational(Player p, String params) {
+    public @NotNull CompletableFuture<String> onRequest(Player p, String params) {
         return CompletableFuture.supplyAsync(() -> {
+            if (p == null) return params;
             if (params.equalsIgnoreCase("primary_group")) return perms.getPrimaryGroup(p);
             else if (params.equalsIgnoreCase("eco_balance")) return valueOf(econ.getBalance(p));
             else if (params.equalsIgnoreCase("eco_balance_commas")) return econ.format(econ.getBalance(p));

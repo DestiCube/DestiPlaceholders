@@ -42,8 +42,9 @@ public class LuckPermsExtension extends PlaceholderExtension {
     }
 
     @Override
-    public @NotNull CompletableFuture<String> onRequestRelational(Player p, String params) {
+    public @NotNull CompletableFuture<String> onRequest(Player p, String params) {
         return CompletableFuture.supplyAsync(() -> {
+            if (p == null) return params;
             User user = perms.getUserManager().loadUser(p.getUniqueId()).join();
             if (params.equalsIgnoreCase("primary_group")) return user.getPrimaryGroup();
             else if (params.equalsIgnoreCase("prefix")) return replace(user.getCachedData().getMetaData().getPrefix());

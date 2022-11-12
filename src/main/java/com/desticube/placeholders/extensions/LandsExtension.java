@@ -42,8 +42,9 @@ public class LandsExtension extends PlaceholderExtension {
     }
 
     @Override
-    public @NotNull CompletableFuture<String> onRequestRelational(Player p, String params) {
+    public @NotNull CompletableFuture<String> onRequest(Player p, String params) {
         return CompletableFuture.supplyAsync(() -> {
+            if (p == null) return params;
             LandPlayer player = lands.getLandPlayer(p.getUniqueId());
             if (player.getLands() == null || player.getLands().isEmpty()) return "<red>None";
             else if (params.equalsIgnoreCase("land_name")) return replaceOldColors(player.getOwningLand() == null ? player.getLandNames()[0] : player.getOwningLand().getName());

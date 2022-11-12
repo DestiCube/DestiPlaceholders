@@ -31,7 +31,7 @@ public class ServerExtension extends PlaceholderExtension {
     }
 
     @Override
-    public @NotNull CompletableFuture<String> onRequestRelational(Player p, String params) {
+    public @NotNull CompletableFuture<String> onRequest(Player p, String params) {
         return CompletableFuture.supplyAsync(() -> {
             if (params.equalsIgnoreCase("playercount")) return valueOf(Bukkit.getOnlinePlayers().size());
             else return params;

@@ -27,7 +27,7 @@ public class EmptyExtension extends PlaceholderExtension {
     }
 
     @Override
-    public @NotNull CompletableFuture<String> onRequestRelational(Player p, String params) {
+    public @NotNull CompletableFuture<String> onRequest(Player p, String params) {
         return CompletableFuture.completedFuture(params);
     }
 }

@@ -28,8 +28,9 @@ public class PlayerExtension extends PlaceholderExtension {
     }
 
     @Override
-    public @NotNull CompletableFuture<String> onRequestRelational(Player p, String params) {
+    public @NotNull CompletableFuture<String> onRequest(Player p, String params) {
         return CompletableFuture.supplyAsync(() -> {
+            if (p == null) return params;
             if (params.equalsIgnoreCase("name")) return p.getName();
             else if (params.equalsIgnoreCase("exp_level")) return valueOf(p.getExpToLevel());
             else if (params.equalsIgnoreCase("exp_amount")) return valueOf(p.getTotalExperience());

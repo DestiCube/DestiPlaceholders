@@ -19,11 +19,7 @@ public abstract class PlaceholderExtension {
     @NotNull
     public abstract String getVersion();
 
-    public CompletableFuture<String> onRequestRelational(Player player, String params) {
-        return completedFuture(params);
-    }
-
-    public CompletableFuture<String> onRequest(String params) {
+    public CompletableFuture<String> onRequest(Player player, String params) {
         return completedFuture(params);
     }
 
